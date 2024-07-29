@@ -1,27 +1,28 @@
-import { ALL_MEETUP_PAGE, FAVORITES_PAGE, NEW_MEETUP_PAGE } from "./../../utils/constants";
-
+import { useNavigate } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
-export default function MainNavigation({ setPage, isVisible }) {
-  
+export default function MainNavigation({ isVisible }) {
+
+  const navigate = useNavigate()
+
   return (
     <header className={`${classes.header} ${!isVisible? classes.hidden : ""}`} data-test="navigation-header">
       <div className={classes.logo}>React Meetups</div>
       <nav>
         <ul>
           <li>
-            <a href="#" onClick={() => setPage(ALL_MEETUP_PAGE)}>
+            <a onClick={() => navigate("/")} >
               All Meetups
             </a>
           </li>
 
           <li>
-            <a href="#" onClick={() => setPage(NEW_MEETUP_PAGE)}>
+            <a onClick={() => navigate("/add")}>
               Add New Meetup
             </a>
           </li>
           <li>
-            <a href="#" onClick={() => setPage(FAVORITES_PAGE)}>
+            <a onClick={() => navigate("/favorites")}>
               My Favorites
               <span className={classes.badge}>{0}</span>
             </a>

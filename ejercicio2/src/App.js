@@ -2,17 +2,19 @@ import { useEffect, useState } from "react";
 import AllMeetupsPage from "./pages/AllMeetupsPage";
 import FavoritesPage from "./pages/Favorites";
 import NewMeetupsPage from "./pages/NewMeetup";
-import { ALL_MEETUP_PAGE, FAVORITES_PAGE, NEW_MEETUP_PAGE } from "./utils/constants";
 import MainNavigation from "./components/layout/MainNavigation";
 import Layout from "./components/layout/Layout";
+import {
+  createBrowserRouter,
+  RouterProvider,
+
+} from "react-router-dom";
 
 function App() {
 
   const [isVisible, setIsVisible] = useState(true)
 
   const [lastScrollY, setLastScrollY] = useState(0)
-
-  const [page, setPage] = useState(ALL_MEETUP_PAGE);
 
   const handleScroll = () => {
 
@@ -27,21 +29,32 @@ function App() {
     setLastScrollY(currentScrollY)
   }
 
-  function getCurrentPageComponent() {
-    let currentPageComponent = <AllMeetupsPage />;
-    switch (page) {
-      case FAVORITES_PAGE:
-        currentPageComponent = <FavoritesPage />;
-        break;
-      case NEW_MEETUP_PAGE:
-        currentPageComponent = <NewMeetupsPage />;
-        break;
-      default:
-        currentPageComponent = <AllMeetupsPage />;
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <Layout isVisible={isVisible}>
+          <AllMeetupsPage />
+        </Layout>
+      ),
+    },
+    {
+      path: "/add",
+      element: (
+        <Layout isVisible={isVisible}>
+          <NewMeetupsPage />
+        </Layout>
+      ),
+    },
+    {
+      path: "/favorites",
+      element: (
+        <Layout isVisible={isVisible}>
+          <FavoritesPage />
+        </Layout>
+      ),
     }
-
-    return currentPageComponent;
-  }
+  ])
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -53,8 +66,7 @@ function App() {
 
   return (
     <div data-test="app">
-      <MainNavigation setPage={setPage} isVisible={isVisible} />
-      <Layout>{getCurrentPageComponent()}</Layout>
+      <RouterProvider router={router} />
     </div>
   );
 }
