@@ -1,2 +1,2 @@
 # PRUEBA TÉCNICA AXPE
-Código fuente de la Prueba Téncica Frontend (AXPE Consulting)
+Código fuente de la Prueba Técnica Frontend (AXPE Consulting)
