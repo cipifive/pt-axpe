@@ -3,7 +3,7 @@
 
 -  __1. Que problemas detectas en la operación y razona la respuesta__
 
-Detecto dos problemas principales dentro del pseudocódigo propuesto para la función getTotal():
+    Detecto dos problemas principales dentro del pseudocódigo propuesto para la función getTotal():
 
 En el planteamiento inicial, no existe polimorfismo. En el código planteado, se detallan una serie de verificaciones para calcular el total, lo cual no es idóneo desde el paradigma del diseño orientado a objetos. Sería mas conveniente implementar métodos específicos de cada tipo de servicio, que permita hacer este cálculo de manera independiente. Así, se podrían añadir nuevos tipos de servicio en el futuro, sin tener que modificar el código de RegisteredUser.
 
