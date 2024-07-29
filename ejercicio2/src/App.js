@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import AllMeetupsPage from "./pages/AllMeetupsPage";
 import FavoritesPage from "./pages/Favorites";
 import NewMeetupsPage from "./pages/NewMeetup";
-import MainNavigation from "./components/layout/MainNavigation";
 import Layout from "./components/layout/Layout";
 import {
   createBrowserRouter,
   RouterProvider,
-
 } from "react-router-dom";
+import {NotificationContainer} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 function App() {
 
@@ -67,6 +67,7 @@ function App() {
   return (
     <div data-test="app">
       <RouterProvider router={router} />
+      <NotificationContainer/>
     </div>
   );
 }
