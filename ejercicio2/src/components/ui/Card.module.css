@@ -8,19 +8,29 @@
     background-color: white;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    padding:2rem;
-    margin: 1rem
-  }
-  
-  .cardfavhead {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-   
+    flex-direction: column;
+    margin: 1rem 0;
   }
   
-  .cardfavhead > img {
-    border-radius: 5px;
+  .contentfav {
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .contentfav h3 {
+    font-size: 1.25rem;
+    color: #2c292b;
+  }
+  
+  .cardfav > img {
+    width: 100%;
+    height: 20rem;
+    overflow: hidden;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
   }
   
   .actions {

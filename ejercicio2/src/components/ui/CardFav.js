@@ -2,6 +2,7 @@ import { useFavoritesStore } from "../../zustand/useFavoritesStore";
 import classes from "./Card.module.css";
 import { notify } from "../../utils/functions";
 import { useNavigate } from "react-router-dom";
+import Card from "./Card";
 
 export default function CardFav({ item }) {
     
@@ -22,13 +23,21 @@ export default function CardFav({ item }) {
         }
       }
 
-    return <div className={classes.cardfav}>
-        <div className={classes.cardfavhead}>
-            <span>{item.title}</span>
-            <img src={item.image} width={200} />
-        </div>
-        <div className={classes.actions}>
+      return (
+        <Card>
+            <div className={classes.cardfav}>
+            <img src={item.image} alt={item.title} />
+            </div>
+            <div className={classes.contentfav}>
+            <h3>{item.title}</h3>
+            <address>{item.address}</address>
+            <p>{item.description}</p>
+            </div>
+            <div className={classes.actions}>
             <button onClick={handleRemoveFromFavorites}>Remove from favorites</button>
             </div>
-        </div>;
+        </Card>
+      )
+
+
 }
