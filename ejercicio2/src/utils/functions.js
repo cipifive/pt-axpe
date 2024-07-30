@@ -34,7 +34,7 @@ export const handleAddToFavorites = (callBack,item,count) => {
       notify(1,"Meetup added to favorites")
       callBack(count + 1)
     }
-  }
+}
 
 export const handleRemoveFromFavorites = (callBack,item,count) => {
     if(localStorage.getItem(`meetup-fav-${item.id}`)) {
@@ -44,5 +44,5 @@ export const handleRemoveFromFavorites = (callBack,item,count) => {
     } else {
       notify(3,"Meetup not found")
     }
-  }
+}
 
