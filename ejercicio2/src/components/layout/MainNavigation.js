@@ -14,7 +14,7 @@ export default function MainNavigation({ isVisible }) {
       <nav>
         <ul>
           <li>
-            <a onClick={() => navigate("/")} >
+            <a onClick={() => navigate("/meetups")} >
               All Meetups
             </a>
           </li>

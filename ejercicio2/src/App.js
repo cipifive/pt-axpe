@@ -6,6 +6,7 @@ import Layout from "./components/layout/Layout";
 import {
   createBrowserRouter,
   RouterProvider,
+  Navigate
 } from "react-router-dom";
 import {NotificationContainer} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
@@ -31,7 +32,7 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/meetups",
       element: (
         <Layout isVisible={isVisible}>
           <AllMeetupsPage />
@@ -53,6 +54,10 @@ function App() {
           <FavoritesPage />
         </Layout>
       ),
+    },
+    {
+      path: "*",
+      element: <Navigate to="/meetups" replace />,
     }
   ])
 

@@ -25,3 +25,24 @@ export const notify = (status,message) => {
             break;
     }
 }
+
+export const handleAddToFavorites = (callBack,item,count) => {
+    if(localStorage.getItem(`meetup-fav-${item.id}`)) {
+      notify(2,"Still in favorites")
+    } else {
+      localStorage.setItem(`meetup-fav-${item.id}`,"favorite")
+      notify(1,"Meetup added to favorites")
+      callBack(count + 1)
+    }
+}
+
+export const handleRemoveFromFavorites = (callBack,item,count) => {
+    if(localStorage.getItem(`meetup-fav-${item.id}`)) {
+        callBack(count - 1)
+        localStorage.removeItem(`meetup-fav-${item.id}`)
+        notify(1,"Meetup removed from favorites")
+    } else {
+      notify(3,"Meetup not found")
+    }
+}
+

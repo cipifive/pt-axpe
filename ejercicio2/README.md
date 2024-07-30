@@ -1,6 +1,16 @@
 # __Ejercicio 2__
 ## _Solución propuesta para el ejercicio 2_
 
+Se ha implementado la funcionalidad completa del proyecto, realizando ciertas modificaciones de configuración y lógica del código.
+
+Para poder tratar de historificar los datos desde el lado del cliente, ya que no contamos ni con backend, ni servicio de almacenamiento de datos, utilizamos el localStorage como motor principal de almacenamiento. Para hacer esta lógica más liviana, se ha modificado el custom hook useFetch, para que haga una petición al json de datos si no tenemos el objeto meetups almacenado en la memoria local del navegador.
+
+Además, se implementa un nuevo estado global de zustand, cuya única función es introducir la variable flag en el array de dependencias del useFetch, de tal manera que siempre que haya una adicción de Meetup, o un favorito añadido/borrado, se volverán a pedir los datos al localStorage y se tendrá siempre el dato hidratado.
+
+Por otra parte, se han añadido las librerías Formik y Yup para reforzar la validación del formulario de creación de Meetups. Se han aplicado restricciones a cada uno de los campos, las cuales impiden que se haga una inserción incompleta en el array de Meetups alojado en el localStorage.
+
+En cuanto a los requisitos y condiciones:
+
 -  __Para el header se requiere una animación para tener un acceso rápido a las distintas páginas cuando hacemos scroll. Se quiere que cuando hacemos scroll down, este tiene que desaparecer y cuando hacemos scroll up tiene que volver a aparecer en la posición de la página dónde te encuentres.__
 Se han creado dos nuevos estados en el App.js para gestionar estos eventos de scroll dentro del navegador (isVisible y lastScrollY). El primero de ellos indicará si la barra de navegación es o no visible. El segundo, indica la posición de la página en el eje Y tras cada acción de scroll. Además, se ha implementado el hook useEffect, que añade el evento de scroll a la pantalla, y ejecuta la función handleScroll cuando se realiza dicha acción. Este useEffect tiene una sentencia de retorno, donde se elimina el evento cuando se desmonta el componente.
 De esta manera, el estado isVisible es capaz de indicar si la barra de navegación ha de verse o no, en función de si hacemos scroll hacia arriba o hacia abajo, o estamos en la parte superior de la pantalla.
@@ -23,7 +33,7 @@ Adicionalmente, se ha añadido un test más, en este caso para la barra de naveg
 -  __npm i.__
 Para instalar las librerías necesarias para el correcto funcionamiento del código
 -  __npm start.__
-Para iniciar el proyecto en modo desarrollo, sin minimizar los assets. Se podrá acceder al mismo a través de la url http://localhost:3000
+Para iniciar el proyecto en modo desarrollo, sin minimizar los assets. Se podrá acceder al mismo a través de la url http://localhost:3000/meetups. La propia configuración del router hace que te lleve a esa url directamente, aún accediendo simplemente a http://localhost:3000
 -  __npm run build.__
 Para generar la versión de producción, donde se minimizan los assets que componen la aplicación, creando una versión optimizada del proyecto.
 -  __npm run test.__

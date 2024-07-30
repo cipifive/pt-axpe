@@ -12,7 +12,7 @@ export default function FavoritesPage() {
 
   return (
     <section>
-      <h1>Favorites Page</h1>
+      <h1>My Favorites</h1>
       <ul className={classes.list}>
         {
           data.map(item => {

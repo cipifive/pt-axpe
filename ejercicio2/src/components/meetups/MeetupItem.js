@@ -1,22 +1,12 @@
-import { useFetch } from "./../../util-hooks/useFetch";
 import classes from "./MeetupItem.module.css";
 import Card from "../ui/Card";
 import { useFavoritesStore } from "../../zustand/useFavoritesStore";
-import { notify } from "../../utils/functions";
+import { handleRemoveFromFavorites } from "../../utils/functions";
+import { handleAddToFavorites } from "../../utils/functions";
 
-export default function MeetupItem({item}) {
+export default function MeetupItem({item,fav}) {
 
   const { count, changeFavoritesCount } = useFavoritesStore()
-
-  const handleAddToFavorites = () => {
-    if(localStorage.getItem(`meetup-fav-${item.id}`)) {
-      notify(2,"Still in favorites")
-    } else {
-      localStorage.setItem(`meetup-fav-${item.id}`,"favorite")
-      notify(1,"Meetup added to favorites")
-      changeFavoritesCount(count + 1)
-    }
-  }
 
   return (
     <li className={classes.item} data-test='meet-up-item'>
@@ -30,7 +20,12 @@ export default function MeetupItem({item}) {
           <p>{item.description}</p>
         </div>
         <div className={classes.actions}>
-          <button onClick={handleAddToFavorites}>Add to favorites</button>
+          {
+            fav?
+            <button onClick={() => handleRemoveFromFavorites(changeFavoritesCount,item,count)}>Remove from favorites</button>
+            :
+            <button onClick={() => handleAddToFavorites(changeFavoritesCount,item,count)}>Add to favorites</button>
+          }
         </div>
       </Card>
     </li>
